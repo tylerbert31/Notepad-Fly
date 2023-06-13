@@ -12,10 +12,37 @@ body {
 .sidebar {
   background-color: aqua;
   overflow-y: auto;
+  border-right: #767676 1px solid;
+}
+
+.card {
+  display: flex;
+  height: 55px;
+  border-bottom: #767676 1px solid;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card ul {
+  padding: 0px 10px;
+}
+
+.card .title {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 17pt;
+  font-weight: bold;
+}
+
+.card .date {
+  font-size: 10pt;
+  list-style-type: none;
 }
 
 .main {
-  background-color: crimson;
+  background-color: rgb(255, 255, 255);
+  overflow-y: auto;
 }
 
 .title {
@@ -34,4 +61,17 @@ body {
   margin: 10px 30px;
   font-size: 20pt;
   font-weight: bold;
+}
+
+.text textarea {
+  margin: 0px 20px;
+  display: block;
+  width: clamp(300px, 95%, 95%);
+  height: 195vh;
+  font-size: 15pt;
+  resize: none !important;
+  overflow-y: auto;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
