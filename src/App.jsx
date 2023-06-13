@@ -18,7 +18,17 @@ function App() {
       <div className="wrapper">
         <div className="container">
           <div className="sidebar">Hey</div>
-          <div className="main">Hey</div>
+          <div className="main">
+            <div className="title">
+              <input
+                type="text"
+                name="Title"
+                id="Title"
+                maxLength={30}
+                placeholder="Title Here"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>
