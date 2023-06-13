@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "vite": "^1.0.0-rc.13",
-    "vite-plugin-react": "^4.0.0"
+    "vite-plugin-react": "^4.0.1"
   }
 }
