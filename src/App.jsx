@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import { notes } from "./sample";
 
 function App() {
-  const counter = [0, 1, 2, 1, 2, 1, 2];
+  const [main_title, setMainTitle] = useState("");
+  const [main_text, setMainText] = useState("");
+
   return (
     <>
       <div className="wrapper">
         <div className="container">
           <div className="sidebar">
-            {counter.map((counter) => (
-              <div className="card" key={counter}>
+            {notes.map((notes) => (
+              <div
+                className="card"
+                key={notes}
+                onClick={() => {
+                  setMainTitle(notes.title);
+                  setMainText(notes.text);
+                }}
+              >
                 <ul>
-                  <li className="title">Title of Notepad</li>
-                  <li className="date">13-06-2023</li>
+                  <li className="title">{notes.title}</li>
+                  <li className="date">{notes.date}</li>
                 </ul>
               </div>
             ))}
@@ -25,10 +35,23 @@ function App() {
                 id="Title"
                 maxLength={30}
                 placeholder="Title Here"
+                value={main_title ? main_title : ""}
+                onChange={(e) => {
+                  setMainTitle(e.target.value);
+                }}
               />
             </div>
             <div className="text">
-              <textarea name="Text" id="Text" cols="30" rows="10"></textarea>
+              <textarea
+                name="Text"
+                id="Text"
+                cols="30"
+                rows="10"
+                value={main_text}
+                onChange={(e) => {
+                  setMainText(e.target.value);
+                }}
+              ></textarea>
             </div>
           </div>
         </div>
