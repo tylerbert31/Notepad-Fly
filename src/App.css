@@ -19,12 +19,26 @@ body {
   border-right: #767676 1px solid;
 }
 
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar:hover {
+  background-color: rgb(237, 237, 237);
+  transition: background-color 0.3s ease-in;
+}
+
 .card {
   display: flex;
   height: 55px;
   border-bottom: #767676 1px solid;
   align-items: center;
   cursor: pointer;
+}
+
+.card:hover {
+  background-color: white;
+  transition: background-color 0.2s ease-out;
 }
 
 .card ul {
@@ -49,6 +63,10 @@ body {
 .main {
   background-color: rgb(255, 255, 255);
   overflow-y: auto;
+}
+
+.main::-webkit-scrollbar {
+  display: none;
 }
 
 .title {
