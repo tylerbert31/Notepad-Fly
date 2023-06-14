@@ -11,7 +11,7 @@ function App() {
       <div className="wrapper">
         <div className="container">
           <div className="sidebar">
-            {notes.map((notes) => (
+            {notes.map((notes, index) => (
               <div
                 className="card"
                 key={notes}
