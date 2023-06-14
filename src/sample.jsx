@@ -1,6 +1,6 @@
 const notes = [
   {
-    title: "Redeliza",
+    title: "Redelizaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     date: "13-06-2023",
     text: "We cannot solve problems with the kind of thinking we employed when we came up with them.",
   },

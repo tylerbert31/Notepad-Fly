@@ -16,6 +16,7 @@ body {
 .sidebar {
   background-color: rgb(255, 255, 255);
   overflow-y: auto;
+  text-overflow: ellipsis;
   border-right: #767676 1px solid;
 }
 
@@ -34,6 +35,8 @@ body {
   border-bottom: #767676 1px solid;
   align-items: center;
   cursor: pointer;
+
+  text-overflow: ellipsis;
 }
 
 .card:hover {
@@ -63,10 +66,6 @@ body {
 .main {
   background-color: rgb(255, 255, 255);
   overflow-y: auto;
-}
-
-.main::-webkit-scrollbar {
-  display: none;
 }
 
 .title {
