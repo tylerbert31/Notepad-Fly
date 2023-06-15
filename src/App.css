@@ -1,5 +1,5 @@
 :root {
-  --font-color: #333333;
+  --font-color: #424242;
 }
 
 html,
@@ -60,7 +60,7 @@ body {
 .card .date {
   font-size: 10pt;
   list-style-type: none;
-  color: var(--font-color);
+  color: rgba(0, 0, 0, 0.404);
 }
 
 .main {
@@ -68,8 +68,9 @@ body {
   overflow-y: auto;
 }
 
-.title {
-  display: block;
+.main .title {
+  display: grid;
+  grid-template-columns: minmax(15rem, 70%) 1fr;
 }
 
 .title input {
@@ -98,4 +99,19 @@ body {
   outline: none;
   background-color: transparent;
   color: var(--font-color);
+}
+
+.trash {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 10px 20px;
+}
+.trash img {
+  height: 25px;
+  fill: var(--font-color);
+  cursor: pointer;
+}
+.trash img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }

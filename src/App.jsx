@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { notes } from "./sample";
+import trash from "./icons/trash.svg";
 
 function App() {
   const [main_title, setMainTitle] = useState("");
@@ -29,17 +30,24 @@ function App() {
           </div>
           <div className="main">
             <div className="title">
-              <input
-                type="text"
-                name="Title"
-                id="Title"
-                maxLength={30}
-                placeholder="Title Here"
-                value={main_title ? main_title : ""}
-                onChange={(e) => {
-                  setMainTitle(e.target.value);
-                }}
-              />
+              <div className="textbox">
+                <input
+                  type="text"
+                  name="Title"
+                  id="Title"
+                  maxLength={30}
+                  placeholder="Title Here"
+                  value={main_title ? main_title : ""}
+                  onChange={(e) => {
+                    setMainTitle(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="options">
+                <div className="trash">
+                  <img src={trash} alt="trash" />
+                </div>
+              </div>
             </div>
             <div className="text">
               <textarea
