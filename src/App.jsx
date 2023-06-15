@@ -12,6 +12,13 @@ function App() {
   const handleRemove = (index) => {
     const newItems = notes.filter((item, i) => i !== index);
     setNotes(newItems);
+    reset(index == 0 ? 1 : 0);
+  };
+
+  const reset = (index) => {
+    setMainIndex(index);
+    setMainTitle(notes[index].title);
+    setMainText(notes[index].text);
   };
 
   useEffect(() => {
@@ -69,6 +76,9 @@ function App() {
                       }
                     }}
                   />
+                </div>
+                <div className="word-count">
+                  <h4>Word Count : {main_text.length}</h4>
                 </div>
               </div>
             </div>

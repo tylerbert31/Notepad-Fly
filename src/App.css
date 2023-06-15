@@ -102,9 +102,13 @@ body {
   color: var(--font-color);
 }
 
-.trash {
+.options {
   display: flex;
   flex-direction: row-reverse;
+  align-items: center;
+}
+
+.trash {
   padding: 10px 20px;
 }
 .trash img {
