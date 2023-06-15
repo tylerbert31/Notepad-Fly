@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
-import { notes } from "./sample";
+import { notes as Template } from "./sample";
 import trash from "./icons/trash.svg";
 
 function App() {
+  const [notes, setNotes] = useState([]);
   const [main_title, setMainTitle] = useState("");
   const [main_text, setMainText] = useState("");
+  const [mainIndex, setMainIndex] = useState(0);
+
+  const handleRemove = (index) => {
+    const newItems = notes.filter((item, i) => i !== index);
+    setNotes(newItems);
+  };
+
+  useEffect(() => {
+    setNotes(Template);
+  }, []);
 
   return (
     <>
@@ -17,6 +28,7 @@ function App() {
                 className="card"
                 key={notes}
                 onClick={() => {
+                  setMainIndex(index);
                   setMainTitle(notes.title);
                   setMainText(notes.text);
                 }}
@@ -45,7 +57,18 @@ function App() {
               </div>
               <div className="options">
                 <div className="trash">
-                  <img src={trash} alt="trash" />
+                  <img
+                    src={trash}
+                    alt="trash"
+                    onClick={() => {
+                      const isConfirmed = confirm(
+                        `Are you sure you want to delete ${notes[mainIndex].title}`
+                      );
+                      if (isConfirmed) {
+                        handleRemove(mainIndex);
+                      }
+                    }}
+                  />
                 </div>
               </div>
             </div>

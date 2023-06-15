@@ -71,6 +71,7 @@ body {
 .main .title {
   display: grid;
   grid-template-columns: minmax(15rem, 70%) 1fr;
+  margin-bottom: 30px;
 }
 
 .title input {
