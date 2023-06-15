@@ -23,6 +23,7 @@ function App() {
 
   useEffect(() => {
     setNotes(Template);
+    setMainIndex(0);
   }, []);
 
   return (
