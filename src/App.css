@@ -7,8 +7,15 @@ body {
   margin: 0;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  border-bottom: #767676 1px solid;
+}
+
 .container {
-  height: 100vh;
+  height: calc(100vh - 51px);
   display: grid;
   grid-template-columns: minmax(15rem, 20%) 1fr;
 }
@@ -122,8 +129,6 @@ body {
 }
 
 .word-count {
-  display: grid;
   margin-left: 10px;
   min-width: 151px;
-  margin: auto 0px;
 }

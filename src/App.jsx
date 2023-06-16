@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { notes as Template } from "./sample";
 import trash from "./icons/trash.svg";
+import add from "./icons/add.svg";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -28,6 +29,30 @@ function App() {
   return (
     <>
       <div className="wrapper">
+        <div className="header">
+          <div className="add trash">
+            <img src={add} alt="trash" />
+          </div>
+          <div className="options">
+            <div className="trash">
+              <img
+                src={trash}
+                alt="trash"
+                onClick={() => {
+                  const isConfirmed = confirm(
+                    `Are you sure you want to delete ${notes[mainIndex].title}`
+                  );
+                  if (isConfirmed) {
+                    handleRemove(mainIndex);
+                  }
+                }}
+              />
+            </div>
+            <div className="word-count">
+              <h4>Word Count : {main_text.length}</h4>
+            </div>
+          </div>
+        </div>{" "}
         <div className="container">
           <div className="sidebar">
             {notes.map((notes, index) => (
@@ -61,25 +86,6 @@ function App() {
                     setMainTitle(e.target.value);
                   }}
                 />
-              </div>
-              <div className="options">
-                <div className="trash">
-                  <img
-                    src={trash}
-                    alt="trash"
-                    onClick={() => {
-                      const isConfirmed = confirm(
-                        `Are you sure you want to delete ${notes[mainIndex].title}`
-                      );
-                      if (isConfirmed) {
-                        handleRemove(mainIndex);
-                      }
-                    }}
-                  />
-                </div>
-                <div className="word-count">
-                  <h4>Word Count : {main_text.length}</h4>
-                </div>
               </div>
             </div>
             <div className="text">
