@@ -3,6 +3,7 @@ import "./App.css";
 import { notes as Template } from "./sample";
 import trash from "./icons/trash.svg";
 import add from "./icons/add.svg";
+import getDate from "./scripts/getDate";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -26,12 +27,18 @@ function App() {
     setNotes(Template);
   }, []);
 
+  const addNote = () => {
+    const newNote = [{ title: "New Note", text: "New Note", date: getDate() }];
+    setNotes([newNote[0], ...notes]);
+    alert("hello");
+  };
+
   return (
     <>
       <div className="wrapper">
         <div className="header">
           <div className="add trash">
-            <img src={add} alt="trash" />
+            <img src={add} alt="trash" onClick={() => addNote()} />
           </div>
           <div className="options">
             <div className="trash">
