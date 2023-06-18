@@ -30,7 +30,6 @@ function App() {
   const addNote = () => {
     const newNote = [{ title: "New Note", text: "New Note", date: getDate() }];
     setNotes([newNote[0], ...notes]);
-    alert("hello");
   };
 
   return (
@@ -38,7 +37,14 @@ function App() {
       <div className="wrapper">
         <div className="header">
           <div className="add trash">
-            <img src={add} alt="trash" onClick={() => addNote()} />
+            <img
+              src={add}
+              alt="trash"
+              onClick={() => {
+                addNote();
+                reset(0);
+              }}
+            />
           </div>
           <div className="options">
             <div className="trash">
@@ -92,6 +98,8 @@ function App() {
                   onChange={(e) => {
                     setMainTitle(e.target.value);
                   }}
+                  disabled={notes.length < 1 ? true : false}
+                  readOnly={notes.length < 1 ? true : false}
                 />
               </div>
             </div>
@@ -105,6 +113,8 @@ function App() {
                 onChange={(e) => {
                   setMainText(e.target.value);
                 }}
+                disabled={notes.length < 1 ? true : false}
+                readOnly={notes.length < 1 ? true : false}
               ></textarea>
             </div>
           </div>
