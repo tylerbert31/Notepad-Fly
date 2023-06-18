@@ -19,7 +19,7 @@ function App() {
 
   const reset = (index) => {
     const check = index + 1 >= notes.length ? index - 1 : index + 1;
-    setMainIndex(check);
+    setMainIndex(check - 1);
     setMainTitle(notes[check].title);
     setMainText(notes[check].text);
   };
@@ -41,6 +41,12 @@ function App() {
     const newTitle = [...notes];
     newTitle[mainIndex].title = e;
     setNotes(newTitle);
+  };
+
+  const handleUpdateText = (e) => {
+    const newText = [...notes];
+    newText[mainIndex].text = e;
+    setNotes(newText);
   };
 
   return (
@@ -109,7 +115,7 @@ function App() {
                   name="Title"
                   id="Title"
                   maxLength={30}
-                  placeholder="Select a note"
+                  placeholder="My note"
                   value={main_title ? main_title : ""}
                   onChange={(e) => {
                     setMainTitle(e.target.value);
@@ -130,6 +136,7 @@ function App() {
                 value={main_text}
                 onChange={(e) => {
                   setMainText(e.target.value);
+                  handleUpdateText(e.target.value);
                 }}
                 disabled={notes.length < 1 || mainIndex < 0 ? true : false}
                 readOnly={notes.length < 1 || mainIndex < 0 ? true : false}
