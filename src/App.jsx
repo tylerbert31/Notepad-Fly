@@ -76,9 +76,7 @@ function App() {
               />
             </div>
             <div className="word-count">
-              <h4>
-                Word Count : {main_text.length} = {mainIndex}
-              </h4>
+              <h4>Character Count : {main_text.length}</h4>
             </div>
           </div>
         </div>{" "}
