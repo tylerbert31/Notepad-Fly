@@ -30,6 +30,15 @@ function App() {
   const addNote = () => {
     const newNote = [{ title: "New Note", text: "New Note", date: getDate() }];
     setNotes([newNote[0], ...notes]);
+    setMainTitle(newNote[0].title);
+    setMainText(newNote[0].text);
+    setMainIndex(0);
+  };
+
+  const handleUpdateTitle = (e) => {
+    const newTitle = [...notes];
+    newTitle[mainIndex].title = e;
+    setNotes(newTitle);
   };
 
   return (
@@ -42,7 +51,6 @@ function App() {
               alt="trash"
               onClick={() => {
                 addNote();
-                reset(0);
               }}
             />
           </div>
@@ -97,6 +105,7 @@ function App() {
                   value={main_title ? main_title : ""}
                   onChange={(e) => {
                     setMainTitle(e.target.value);
+                    handleUpdateTitle(e.target.value);
                   }}
                   disabled={notes.length < 1 ? true : false}
                   readOnly={notes.length < 1 ? true : false}

@@ -5,7 +5,7 @@ function getDate() {
   const month = today.getMonth() + 1; // Months are zero-indexed
   const year = today.getFullYear();
 
-  const formattedDate = `${day}-${month}-${year}`;
+  const formattedDate = `${month}-${day}-${year}`;
 
   return formattedDate;
 }
