@@ -49,7 +49,6 @@ textarea {
   border-bottom: #767676 1px solid;
   align-items: center;
   cursor: pointer;
-
   text-overflow: ellipsis;
 }
 

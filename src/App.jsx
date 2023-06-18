@@ -14,17 +14,19 @@ function App() {
   const handleRemove = (index) => {
     const newItems = notes.filter((item, i) => i !== index);
     setNotes(newItems);
-    reset(index == 0 ? 1 : 0);
+    reset(index);
   };
 
   const reset = (index) => {
-    setMainIndex(index);
-    setMainTitle(notes[index].title);
-    setMainText(notes[index].text);
+    const check = index + 1 >= notes.length ? index - 1 : index + 1;
+    setMainIndex(check);
+    setMainTitle(notes[check].title);
+    setMainText(notes[check].text);
   };
 
   useEffect(() => {
     setNotes(Template);
+    setMainIndex(-1);
   }, []);
 
   const addNote = () => {
@@ -60,17 +62,23 @@ function App() {
                 src={trash}
                 alt="trash"
                 onClick={() => {
-                  const isConfirmed = confirm(
-                    `Are you sure you want to delete ${notes[mainIndex].title}`
-                  );
-                  if (isConfirmed) {
-                    handleRemove(mainIndex);
+                  if (mainIndex > -1) {
+                    const isConfirmed = confirm(
+                      `Are you sure you want to delete ${notes[mainIndex].title}`
+                    );
+                    if (isConfirmed) {
+                      handleRemove(mainIndex);
+                    }
+                  } else {
+                    alert("Please select a note to delete.");
                   }
                 }}
               />
             </div>
             <div className="word-count">
-              <h4>Word Count : {main_text.length}</h4>
+              <h4>
+                Word Count : {main_text.length} = {mainIndex}
+              </h4>
             </div>
           </div>
         </div>{" "}
@@ -87,7 +95,9 @@ function App() {
                 }}
               >
                 <ul>
-                  <li className="title">{notes.title}</li>
+                  <li className="title">
+                    {notes.title ? notes.title : "My note"}
+                  </li>
                   <li className="date">{notes.date}</li>
                 </ul>
               </div>
@@ -101,20 +111,21 @@ function App() {
                   name="Title"
                   id="Title"
                   maxLength={30}
-                  placeholder="Title Here"
+                  placeholder="Select a note"
                   value={main_title ? main_title : ""}
                   onChange={(e) => {
                     setMainTitle(e.target.value);
                     handleUpdateTitle(e.target.value);
                   }}
-                  disabled={notes.length < 1 ? true : false}
-                  readOnly={notes.length < 1 ? true : false}
+                  disabled={notes.length < 1 || mainIndex < 0 ? true : false}
+                  readOnly={notes.length < 1 || mainIndex < 0 ? true : false}
                 />
               </div>
             </div>
             <div className="text">
               <textarea
                 name="Text"
+                placeholder="Empty"
                 id="Text"
                 cols="30"
                 rows="10"
@@ -122,8 +133,8 @@ function App() {
                 onChange={(e) => {
                   setMainText(e.target.value);
                 }}
-                disabled={notes.length < 1 ? true : false}
-                readOnly={notes.length < 1 ? true : false}
+                disabled={notes.length < 1 || mainIndex < 0 ? true : false}
+                readOnly={notes.length < 1 || mainIndex < 0 ? true : false}
               ></textarea>
             </div>
           </div>
