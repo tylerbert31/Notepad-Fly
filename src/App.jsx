@@ -26,13 +26,13 @@ function App() {
   };
 
   useEffect(() => {
-    const localNotes = JSON.parse(localStorage.getItem("user_notes"));
+    const localNotes = localStorage.getItem("user_notes");
     if (localNotes) {
-      setNotes(localNotes);
+      setNotes(JSON.parse(localNotes));
     } else {
       setNotes(Template);
     }
-
+    // setNotes(Template);
     setMainIndex(-1);
   }, []);
 
