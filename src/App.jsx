@@ -26,8 +26,9 @@ function App() {
   };
 
   useEffect(() => {
-    const localNotes = localStorage.getItem("user_notes");
+    const localNotes = JSON.parse(localStorage.getItem("user_notes"));
     if (localNotes) {
+      setNotes(localNotes);
     } else {
       setNotes(Template);
     }
@@ -59,7 +60,7 @@ function App() {
   };
 
   const updateStorage = () => {
-    localStorage.getItem("user_notes", notes);
+    localStorage.setItem("user_notes", JSON.stringify(notes));
   };
 
   return (
