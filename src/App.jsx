@@ -145,6 +145,7 @@ function App() {
                 name="Text"
                 placeholder="Empty"
                 id="Text"
+                maxLength={5900}
                 cols="30"
                 rows="10"
                 value={main_text}
