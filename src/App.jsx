@@ -15,6 +15,7 @@ function App() {
     const newItems = notes.filter((item, i) => i !== index);
     setNotes(newItems);
     reset(index);
+    updateStorage();
   };
 
   const reset = (index) => {
@@ -25,7 +26,12 @@ function App() {
   };
 
   useEffect(() => {
-    setNotes(Template);
+    const localNotes = localStorage.getItem("user_notes");
+    if (localNotes) {
+    } else {
+      setNotes(Template);
+    }
+
     setMainIndex(-1);
   }, []);
 
@@ -35,18 +41,25 @@ function App() {
     setMainTitle(newNote[0].title);
     setMainText(newNote[0].text);
     setMainIndex(0);
+    updateStorage();
   };
 
   const handleUpdateTitle = (e) => {
     const newTitle = [...notes];
     newTitle[mainIndex].title = e;
     setNotes(newTitle);
+    updateStorage();
   };
 
   const handleUpdateText = (e) => {
     const newText = [...notes];
     newText[mainIndex].text = e;
     setNotes(newText);
+    updateStorage();
+  };
+
+  const updateStorage = () => {
+    localStorage.getItem("user_notes", notes);
   };
 
   return (
