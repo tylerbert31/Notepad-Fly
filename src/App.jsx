@@ -25,7 +25,7 @@ function App() {
   const showSidebar = () => {
     setShowSide(!showSide);
   };
-  // TO BE CONTINUED, ADD MOBILE_VIEW?
+  // TO BE CONTINUED, ADD MOBILE_VIEW? FOR RESPONSIVENESS
 
   const handleRemove = (index) => {
     const newItems = notes.filter((item, i) => i !== index);
