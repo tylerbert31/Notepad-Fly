@@ -20,10 +20,20 @@ body {
 
   .sidebar {
     display: none;
+    transition: display 0.5s ease-in-out;
   }
   .main {
     width: 100vw;
   }
+}
+
+.hide {
+  display: none;
+  transition: display 0.5s ease-in-out;
+}
+
+.full-width {
+  width: 100vw;
 }
 
 .title,
@@ -50,6 +60,7 @@ textarea {
   overflow-y: auto;
   text-overflow: ellipsis;
   border-right: #767676 1px solid;
+  transition: display 0.5s ease-in-out;
 }
 
 .sidebar::-webkit-scrollbar {

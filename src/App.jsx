@@ -10,6 +10,12 @@ function App() {
   const [main_title, setMainTitle] = useState("");
   const [main_text, setMainText] = useState("");
   const [mainIndex, setMainIndex] = useState(0);
+  const [showSide, setShowSide] = useState(false);
+
+  const showSidebar = () => {
+    setShowSide(!showSide);
+  };
+  // TO BE CONTINUED, ADD MOBILE_VIEW?
 
   const handleRemove = (index) => {
     const newItems = notes.filter((item, i) => i !== index);
@@ -96,12 +102,18 @@ function App() {
               />
             </div>
             <div className="word-count">
-              <h4>Character Count : {main_text.length}</h4>
+              <h4
+                onClick={() => {
+                  showSidebar();
+                }}
+              >
+                Character Count : {main_text.length}
+              </h4>
             </div>
           </div>
         </div>{" "}
         <div className="container">
-          <div className="sidebar">
+          <div className={showSide ? "sidebar hide" : "sidebar"}>
             {notes.map((notes, index) => (
               <div
                 className="card"
@@ -121,7 +133,7 @@ function App() {
               </div>
             ))}
           </div>
-          <div className="main">
+          <div className={showSide ? "main full-width" : "main"}>
             <div className="title">
               <div className="textbox">
                 <input
