@@ -21,6 +21,9 @@ body {
   .sidebar {
     display: none;
   }
+  .main {
+    width: 100vw;
+  }
 }
 
 .title,
