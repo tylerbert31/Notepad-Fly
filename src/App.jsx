@@ -154,6 +154,7 @@ function App() {
             <div className="title">
               <div className="textbox">
                 <input
+                  className={showSide ? "full-width" : ""}
                   type="text"
                   name="Title"
                   id="Title"
