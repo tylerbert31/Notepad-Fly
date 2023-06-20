@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { notes as Template } from "./sample";
 import trash from "./icons/trash.svg";
 import add from "./icons/add.svg";
-import getDate from "./scripts/getDate";
+import textHandlers from "./scripts/textHandler";
 
 function App() {
-  const [notes, setNotes] = useState([]);
-  const [main_title, setMainTitle] = useState("");
-  const [main_text, setMainText] = useState("");
-  const [mainIndex, setMainIndex] = useState(0);
-  const [showSide, setShowSide] = useState(false);
+  const {
+    notes,
+    setNotes,
+    main_title,
+    setMainTitle,
+    main_text,
+    setMainText,
+    mainIndex,
+    setMainIndex,
+    showSide,
+    setShowSide,
+    addNote,
+    handleUpdateTitle,
+    updateStorage,
+  } = textHandlers();
 
   const showSidebar = () => {
     setShowSide(!showSide);
@@ -25,48 +35,32 @@ function App() {
   };
 
   const reset = (index) => {
-    const check = index + 1 >= notes.length ? index - 1 : index + 1;
-    setMainIndex(check - 1);
-    setMainTitle(notes[check].title);
-    setMainText(notes[check].text);
+    if (notes > 0) {
+      const check = index + 1 >= notes.length ? index - 1 : index + 1;
+      setMainIndex(check - 1);
+      setMainTitle(notes[check].title);
+      setMainText(notes[check].text);
+      updateStorage();
+    }
   };
 
   useEffect(() => {
     const localNotes = localStorage.getItem("user_notes");
+    const localIndex = localStorage.getItem("mainIndex");
     if (localNotes) {
       setNotes(JSON.parse(localNotes));
     } else {
       setNotes(Template);
+      alert("Hi! Tyler's Notepad-Fly is yet to have a mobile view.");
     }
-    // setNotes(Template);
     setMainIndex(-1);
   }, []);
-
-  const addNote = () => {
-    const newNote = [{ title: "New Note", text: "New Note", date: getDate() }];
-    setNotes([newNote[0], ...notes]);
-    setMainTitle(newNote[0].title);
-    setMainText(newNote[0].text);
-    setMainIndex(0);
-    updateStorage();
-  };
-
-  const handleUpdateTitle = (e) => {
-    const newTitle = [...notes];
-    newTitle[mainIndex].title = e;
-    setNotes(newTitle);
-    updateStorage();
-  };
 
   const handleUpdateText = (e) => {
     const newText = [...notes];
     newText[mainIndex].text = e;
     setNotes(newText);
     updateStorage();
-  };
-
-  const updateStorage = () => {
-    localStorage.setItem("user_notes", JSON.stringify(notes));
   };
 
   return (
@@ -76,9 +70,10 @@ function App() {
           <div className="add trash">
             <img
               src={add}
-              alt="trash"
+              alt="Add Note"
               onClick={() => {
                 addNote();
+                updateStorage();
               }}
             />
           </div>
@@ -112,16 +107,27 @@ function App() {
             </div>
           </div>
         </div>{" "}
-        <div className="container">
-          <div className={showSide ? "sidebar hide" : "sidebar"}>
+        <div
+          className="container"
+          onMouseEnter={() => {
+            updateStorage();
+          }}
+        >
+          <div
+            className={showSide ? "sidebar hide" : "sidebar"}
+            onMouseEnter={() => {
+              updateStorage();
+            }}
+          >
             {notes.map((notes, index) => (
               <div
                 className="card"
-                key={notes}
+                key={index}
                 onClick={() => {
                   setMainIndex(index);
                   setMainTitle(notes.title);
                   setMainText(notes.text);
+                  updateStorage();
                 }}
               >
                 <ul>
@@ -133,7 +139,12 @@ function App() {
               </div>
             ))}
           </div>
-          <div className={showSide ? "main full-width" : "main"}>
+          <div
+            className={showSide ? "main full-width" : "main"}
+            onClick={() => {
+              updateStorage;
+            }}
+          >
             <div className="title">
               <div className="textbox">
                 <input
