@@ -38,8 +38,14 @@ function App() {
     if (notes > 0) {
       const check = index + 1 >= notes.length ? index - 1 : index + 1;
       setMainIndex(check - 1);
-      setMainTitle(notes[check].title);
-      setMainText(notes[check].text);
+      if (notes.length > 0) {
+        setMainTitle(notes[check].title);
+        setMainText(notes[check].text);
+      } else {
+        setMainTitle("");
+        setMainText("");
+        // NOT WORKING YET
+      }
       updateStorage();
     }
   };
@@ -148,6 +154,7 @@ function App() {
             <div className="title">
               <div className="textbox">
                 <input
+                  className={showSide ? "full-width" : ""}
                   type="text"
                   name="Title"
                   id="Title"

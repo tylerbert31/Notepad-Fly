@@ -97,6 +97,7 @@ textarea {
   font-size: var(--card-font-size);
   font-weight: bold;
   color: var(--font-color);
+  white-space: nowrap;
 }
 
 .card .date {
@@ -112,7 +113,7 @@ textarea {
 
 .main .title {
   display: grid;
-  grid-template-columns: minmax(15rem, 70%) 1fr;
+  /* grid-template-columns: minmax(15rem, 70%) 1fr; */
   margin-bottom: 30px;
 }
 
@@ -127,6 +128,10 @@ textarea {
   margin: 10px 30px;
   font-size: var(--main-font-size);
   font-weight: bold;
+}
+
+input #Title {
+  width: 100vw;
 }
 
 .text textarea {
