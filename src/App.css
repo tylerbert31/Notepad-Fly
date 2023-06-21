@@ -23,7 +23,7 @@ body {
     transition: display 0.5s ease-in-out;
   }
   .main {
-    width: 100%;
+    width: 100vw;
   }
 }
 
@@ -132,10 +132,6 @@ textarea {
   margin: 10px 30px;
   font-size: var(--main-font-size);
   font-weight: bold;
-}
-
-input #Title {
-  /* width: 50vw; */
 }
 
 .text textarea {
