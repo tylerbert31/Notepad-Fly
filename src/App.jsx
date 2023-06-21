@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { notes as Template } from "./sample";
 import trash from "./icons/trash.svg";
@@ -21,6 +21,13 @@ function App() {
     handleUpdateTitle,
     updateStorage,
   } = textHandlers();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const width = window.innerWidth;
+    setIsMobile(width <= 768);
+  }, []);
 
   const showSidebar = () => {
     setShowSide(!showSide);
@@ -52,7 +59,6 @@ function App() {
 
   useEffect(() => {
     const localNotes = localStorage.getItem("user_notes");
-    const localIndex = localStorage.getItem("mainIndex");
     if (localNotes) {
       setNotes(JSON.parse(localNotes));
     } else {
@@ -153,6 +159,7 @@ function App() {
           >
             <div className="title">
               <div className="textbox">
+                <img className="mobile-toggle" src={add} alt="Open Sidebar" />
                 <input
                   className={showSide ? "full-width" : ""}
                   type="text"
