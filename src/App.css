@@ -117,6 +117,10 @@ textarea {
   margin-bottom: 30px;
 }
 
+.main::-webkit-scrollbar {
+  display: none;
+}
+
 .title input {
   border: none;
   outline: none;
@@ -130,15 +134,11 @@ textarea {
   font-weight: bold;
 }
 
-input #Title {
-  width: 100vw;
-}
-
 .text textarea {
   margin: 0px 20px;
   display: block;
   width: clamp(300px, 95%, 95%);
-  height: 195vh;
+  height: 150vh;
   font-size: var(--card-font-size);
   resize: none !important;
   overflow-y: auto;
