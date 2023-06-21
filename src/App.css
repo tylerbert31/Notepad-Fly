@@ -117,6 +117,11 @@ textarea {
   margin-bottom: 30px;
 }
 
+.textbox img {
+  height: 20px;
+  margin: 0px 15px;
+}
+
 .main::-webkit-scrollbar {
   display: none;
 }
@@ -129,7 +134,7 @@ textarea {
   margin: 0;
 
   color: var(--font-color);
-  margin: 10px 30px;
+  margin: 10px 25px;
   font-size: var(--main-font-size);
   font-weight: bold;
 }
