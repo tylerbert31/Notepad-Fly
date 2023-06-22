@@ -3,7 +3,10 @@ import "./App.css";
 import { notes as Template } from "./sample";
 import trash from "./icons/trash.svg";
 import add from "./icons/add.svg";
+import arrow from "./icons/arrow.svg";
 import textHandlers from "./scripts/textHandler";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const {
@@ -22,11 +25,24 @@ function App() {
     updateStorage,
   } = textHandlers();
 
+  // SHOWS BACK BUTTON WHEN MOBILE VIEW SIZE
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
-    const width = window.innerWidth;
-    setIsMobile(width <= 768);
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width <= 768);
+    };
+
+    // Initial check
+    handleResize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const showSidebar = () => {
@@ -63,7 +79,16 @@ function App() {
       setNotes(JSON.parse(localNotes));
     } else {
       setNotes(Template);
-      alert("Hi! Tyler's Notepad-Fly is yet to have a mobile view.");
+      toast.info("Welcome to Tyler's Notepad-Fly!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
     setMainIndex(-1);
   }, []);
@@ -78,6 +103,7 @@ function App() {
   return (
     <>
       <div className="wrapper">
+        <ToastContainer />
         <div className="header">
           <div className="add trash">
             <img
@@ -109,16 +135,10 @@ function App() {
               />
             </div>
             <div className="word-count">
-              <h4
-                onClick={() => {
-                  showSidebar();
-                }}
-              >
-                Character Count : {main_text.length}
-              </h4>
+              <h4>Character Count : {main_text.length}</h4>
             </div>
           </div>
-        </div>{" "}
+        </div>
         <div
           className="container"
           onMouseEnter={() => {
@@ -140,6 +160,11 @@ function App() {
                   setMainTitle(notes.title);
                   setMainText(notes.text);
                   updateStorage();
+                  if (isMobile) {
+                    setTimeout(() => {
+                      setShowSide(true);
+                    }, 100);
+                  }
                 }}
               >
                 <ul>
@@ -152,14 +177,31 @@ function App() {
             ))}
           </div>
           <div
-            className={showSide ? "main full-width" : "main"}
+            className={showSide ? "main" : isMobile ? "main blur" : "main"}
             onClick={() => {
               updateStorage;
+              if (!showSide && isMobile) {
+                setShowSide(true);
+              }
             }}
           >
             <div className="title">
               <div className="textbox">
-                <img className="mobile-toggle" src={add} alt="Open Sidebar" />
+                {isMobile ? (
+                  <img
+                    className={
+                      showSide ? "mobile-toggle " : "mobile-toggle rotate-180"
+                    }
+                    src={arrow}
+                    alt="Open Sidebar"
+                    onClick={() => {
+                      showSidebar();
+                    }}
+                  />
+                ) : (
+                  ""
+                )}
+
                 <input
                   className={showSide ? "full-width" : ""}
                   type="text"

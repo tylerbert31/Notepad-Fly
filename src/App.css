@@ -2,7 +2,7 @@
 :root {
   --font-color: #424242;
   --main-font-size: 20pt;
-  --card-font-size: 17pt;
+  --card-font-size: 14pt;
   --sidebar-width: 0px;
 }
 
@@ -18,10 +18,6 @@ body {
     --card-font-size: 11pt;
   }
 
-  .sidebar {
-    display: none;
-    transition: display 0.5s ease-in-out;
-  }
   .main {
     width: 100vw;
   }
@@ -33,7 +29,7 @@ body {
 }
 
 .full-width {
-  width: 100vw;
+  width: 100%;
 }
 
 .title,
@@ -52,15 +48,15 @@ textarea {
 .container {
   height: calc(100vh - 51px);
   display: grid;
-  grid-template-columns: minmax(9rem, 20%) 1fr;
+  grid-template-columns: minmax(13rem, 20%) 1fr;
+  overflow: hidden;
 }
 
 .sidebar {
   background-color: rgb(255, 255, 255);
-  overflow-y: auto;
-  text-overflow: ellipsis;
+  overflow: hidden;
   border-right: #767676 1px solid;
-  transition: display 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -111,15 +107,33 @@ textarea {
   overflow-y: auto;
 }
 
+.blur {
+  filter: blur(3px);
+  transition: all 0.2s linear;
+}
+
 .main .title {
-  display: grid;
-  /* grid-template-columns: minmax(15rem, 70%) 1fr; */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   margin-bottom: 30px;
+}
+
+.textbox {
+  display: flex;
+  align-items: center;
 }
 
 .textbox img {
   height: 20px;
   margin: 0px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: all 0.2s ease-in-out;
 }
 
 .main::-webkit-scrollbar {
@@ -137,6 +151,11 @@ textarea {
   margin: 10px 25px;
   font-size: var(--main-font-size);
   font-weight: bold;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
 }
 
 .text textarea {
