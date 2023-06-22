@@ -5,6 +5,8 @@ import trash from "./icons/trash.svg";
 import add from "./icons/add.svg";
 import arrow from "./icons/arrow.svg";
 import textHandlers from "./scripts/textHandler";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const {
@@ -77,7 +79,16 @@ function App() {
       setNotes(JSON.parse(localNotes));
     } else {
       setNotes(Template);
-      alert("Hi! Tyler's Notepad-Fly is yet to have a mobile view.");
+      toast.info("Welcome to Tyler's Notepad-Fly!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
     setMainIndex(-1);
   }, []);
@@ -92,6 +103,7 @@ function App() {
   return (
     <>
       <div className="wrapper">
+        <ToastContainer />
         <div className="header">
           <div className="add trash">
             <img
