@@ -148,6 +148,11 @@ function App() {
                   setMainTitle(notes.title);
                   setMainText(notes.text);
                   updateStorage();
+                  if (isMobile) {
+                    setTimeout(() => {
+                      setShowSide(true);
+                    }, 100);
+                  }
                 }}
               >
                 <ul>
@@ -160,9 +165,12 @@ function App() {
             ))}
           </div>
           <div
-            className={showSide ? "main" : "main blur"}
+            className={showSide ? "main" : isMobile ? "main blur" : "main"}
             onClick={() => {
               updateStorage;
+              if (!showSide && isMobile) {
+                setShowSide(true);
+              }
             }}
           >
             <div className="title">
@@ -170,9 +178,7 @@ function App() {
                 {isMobile ? (
                   <img
                     className={
-                      showSide
-                        ? "mobile-toggle no-blur"
-                        : "mobile-toggle rotate-180 no-blur"
+                      showSide ? "mobile-toggle " : "mobile-toggle rotate-180"
                     }
                     src={arrow}
                     alt="Open Sidebar"

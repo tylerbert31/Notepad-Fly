@@ -107,12 +107,9 @@ textarea {
   overflow-y: auto;
 }
 
-.blur:not(img) {
+.blur {
   filter: blur(3px);
-}
-
-.no-blur {
-  filter: none;
+  transition: all 0.2s linear;
 }
 
 .main .title {
@@ -131,7 +128,6 @@ textarea {
   height: 20px;
   margin: 0px 15px;
   cursor: pointer;
-
   transition: all 0.2s ease-in-out;
 }
 
