@@ -160,7 +160,7 @@ function App() {
             ))}
           </div>
           <div
-            className="main"
+            className={showSide ? "main" : "main blur"}
             onClick={() => {
               updateStorage;
             }}
@@ -169,7 +169,11 @@ function App() {
               <div className="textbox">
                 {isMobile ? (
                   <img
-                    className="mobile-toggle"
+                    className={
+                      showSide
+                        ? "mobile-toggle no-blur"
+                        : "mobile-toggle rotate-180 no-blur"
+                    }
                     src={arrow}
                     alt="Open Sidebar"
                     onClick={() => {
