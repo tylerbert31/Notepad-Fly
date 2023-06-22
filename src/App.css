@@ -18,10 +18,10 @@ body {
     --card-font-size: 11pt;
   }
 
-  .sidebar {
+  /* .sidebar {
     display: none;
     transition: display 0.5s ease-in-out;
-  }
+  } */
   .main {
     width: 100vw;
   }
@@ -33,7 +33,7 @@ body {
 }
 
 .full-width {
-  width: 100vw;
+  width: 100%;
 }
 
 .title,
@@ -53,12 +53,12 @@ textarea {
   height: calc(100vh - 51px);
   display: grid;
   grid-template-columns: minmax(9rem, 20%) 1fr;
+  overflow: hidden;
 }
 
 .sidebar {
   background-color: rgb(255, 255, 255);
-  overflow-y: auto;
-  text-overflow: ellipsis;
+  overflow: hidden;
   border-right: #767676 1px solid;
   transition: display 0.5s ease-in-out;
 }
@@ -112,9 +112,15 @@ textarea {
 }
 
 .main .title {
-  display: grid;
-  /* grid-template-columns: minmax(15rem, 70%) 1fr; */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   margin-bottom: 30px;
+}
+
+.textbox {
+  display: flex;
+  align-items: center;
 }
 
 .textbox img {
@@ -137,6 +143,11 @@ textarea {
   margin: 10px 25px;
   font-size: var(--main-font-size);
   font-weight: bold;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
 }
 
 .text textarea {

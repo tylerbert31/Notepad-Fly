@@ -3,6 +3,7 @@ import "./App.css";
 import { notes as Template } from "./sample";
 import trash from "./icons/trash.svg";
 import add from "./icons/add.svg";
+import arrow from "./icons/arrow.svg";
 import textHandlers from "./scripts/textHandler";
 
 function App() {
@@ -22,11 +23,24 @@ function App() {
     updateStorage,
   } = textHandlers();
 
+  // SHOWS BACK BUTTON WHEN MOBILE VIEW SIZE
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
-    const width = window.innerWidth;
-    setIsMobile(width <= 768);
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width <= 768);
+    };
+
+    // Initial check
+    handleResize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const showSidebar = () => {
@@ -109,16 +123,10 @@ function App() {
               />
             </div>
             <div className="word-count">
-              <h4
-                onClick={() => {
-                  showSidebar();
-                }}
-              >
-                Character Count : {main_text.length}
-              </h4>
+              <h4>Character Count : {main_text.length}</h4>
             </div>
           </div>
-        </div>{" "}
+        </div>
         <div
           className="container"
           onMouseEnter={() => {
@@ -152,14 +160,26 @@ function App() {
             ))}
           </div>
           <div
-            className={showSide ? "main full-width" : "main"}
+            className="main"
             onClick={() => {
               updateStorage;
             }}
           >
             <div className="title">
               <div className="textbox">
-                <img className="mobile-toggle" src={add} alt="Open Sidebar" />
+                {isMobile ? (
+                  <img
+                    className="mobile-toggle"
+                    src={arrow}
+                    alt="Open Sidebar"
+                    onClick={() => {
+                      showSidebar();
+                    }}
+                  />
+                ) : (
+                  ""
+                )}
+
                 <input
                   className={showSide ? "full-width" : ""}
                   type="text"
