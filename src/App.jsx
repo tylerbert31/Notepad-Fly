@@ -30,7 +30,8 @@ function App() {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      setIsMobile(width <= 768);
+      setIsMobile(width <= 768 ? true : false);
+      width <= 768 ? "" : setShowSide(false);
     };
 
     // Initial check
